@@ -1,0 +1,104 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta charset="UTF-8">  
+    <title>选课管理</title>  
+    <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css">  
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-float-label.css"/> 
+    <link rel="stylesheet" type="text/css" href="css/index.css">                 
+    <script src="src/jquery-1.12.3.min.js"></script>  
+    <script src="jquery-ui-1.12.1/jquery-ui.js"></script>  
+    <script type="text/javascript" src="src/background.js"></script>
+</head>  
+<body>  
+  
+<div class="demo"> 
+
+<div id="dialog-grade" title="成绩">
+    <form>
+    <fieldset>
+        <div style="margin-top: 20px;">
+            <label for="usual-grade">平时(10分)</label>
+            <input type="text" name="usual-grade" id="usual-grade" value="" class="text" /> 
+        </div>
+        <div>
+            <label for="design-grade">大作业(20分)</label>
+            <input type="text" name="design-grade" id="design-grade" value="" class="text" /> 
+        </div>
+        <div>
+            <label for="exam-grade">期末(70分)</label>
+            <input type="text" name="exam-grade" id="exam-grade" value="" class="text" /> 
+        </div>
+        <div>
+            <label for="total-grade">总评<自动计算> </label>
+            <output type="text" name="total-grade" id="total-grade" value="" class="text" />
+        </div>
+    </fieldset>
+    </form>
+</div>
+
+  
+<div id="dialog-form" title="编辑/添加学生" >  
+    <form >  
+    <fieldset> 
+        <div style="margin-top: 20px;">  
+             <label for="stu-id">学号</label>  
+             <input type="text" name="stu-id" id="stu-id" class="text" /> 
+        </div> 
+        <div>
+            <label for="name">姓名</label>  
+            <input type="text" name="name" id="name" value="" class="text" />
+        </div>
+        <div>
+            <label for="major">专业</label>  
+            <input type="text" name="major" id="major" value="" class="text" /> 
+        </div>
+        <div>
+            <label for="stu-type">类型</label>  
+            <input type="text" name="stu-type" id="stu-type" value="" class="text" /> 
+        </div>
+        <input type="hidden" name="rowindex" id="rowindex" value=""/>  
+    </fieldset>  
+    </form>  
+</div>  
+  
+<div id="dialog-import" title="导入Excel文件">   
+    <div style="margin-top: 20px;" align="center">
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input id="file" type="file" name="filename"/>
+        </form>
+    </div> 
+</div>
+
+
+<div id="users-contain">  
+    <h1 class="title">选课管理</h1> 
+    <button id="create-user">添加</button>  
+    <button id="import">导入</button>
+    <table id="users">  
+        <thead>  
+            <tr class="ui-widget-header "> 
+                <th>学号(不可修改)</th> 
+                <th>姓名</th>  
+                <th>专业</th>
+                <th>类型</th>
+                <th style="width:18em;">操作</th>  
+            </tr>  
+        </thead>  
+        <tbody id="students">  
+        </tbody>  
+    </table> 
+    <div id="page-helper">
+        <div>
+        <button class="lastPage"> 上一页 </button>
+        <button class="nextPage"> 下一页 </button>
+        </div>
+    </div> 
+</div>  
+
+  
+</div><!-- End demo -->  
+<div id="debug">  
+</div>  
+</body>  
+</html>  
