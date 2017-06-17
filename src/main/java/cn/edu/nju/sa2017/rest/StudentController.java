@@ -27,6 +27,14 @@ public class StudentController {
        return list;
    }
 
+    @RequestMapping(value = "/find",method = RequestMethod.GET)
+    @ResponseBody
+    public PageInfo<Student> findStudentById(Long id) {
+        System.out.println("Find student by id: " + id);
+        List<Student> studentList = studentService.findStudentById(id);
+        return new PageInfo<Student>(studentList);
+    }
+
     @RequestMapping(value = "/pageInfo", method = RequestMethod.POST)
     @ResponseBody
     public PageInfo<Student> getStudentPage(Integer pageNum, Integer pageSize) {
@@ -57,17 +65,10 @@ public class StudentController {
     @ResponseBody
     public PageInfo<Student> updateStudent (Student student){
         System.out.println("Update student, his id is " + student.getId());
-        //Student student = new Student(id,name,department,grade,usual_grade,design_grade,exam_grade);
         studentService.updateStudent(student);
         List<Student> studentList = studentService.getAllStudents();
         return new PageInfo<Student>(studentList);
     }
 
-    @RequestMapping(value = "/find",method = RequestMethod.GET)
-    @ResponseBody
-    public PageInfo<Student> findStudentById(Long id) {
-        System.out.println("Find student by id: " + id);
-        List<Student> studentList = studentService.findStudentById(id);
-        return new PageInfo<Student>(studentList);
-    }
+
 }
