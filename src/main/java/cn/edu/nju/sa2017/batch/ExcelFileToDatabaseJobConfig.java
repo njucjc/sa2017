@@ -38,7 +38,7 @@ public class ExcelFileToDatabaseJobConfig {
 
     private static final int LINES_TO_SKIP = 4;
 
-    private static final int CHUNK_SIZE = 16;
+    private static final int CHUNK_SIZE = 4;
 
    // private static final String PROPERTY_EXCEL_SOURCE_FILE_PATH = "excel.to.database.job.source.file.path";
 
