@@ -175,7 +175,7 @@ $(function() {
         buttons: {
             "导入": function(){
                 $.ajax({
-                    url: 'http://localhost:8080/batchimport',
+                    url: 'http://localhost:8080/students/import',
                     type: 'POST',
                     cache: false,
                     data: new FormData($('#uploadForm')[0]),

@@ -16,26 +16,26 @@ import lombok.experimental.Accessors;
 @ToString
 public class Student extends PageHelperEntity {
 
-    private Long  id;
+    private String  id;
     private String name;
     private String major;
     private String type; //正选、重修、跨院系
 
-    private Integer usual;
-    private Integer design;
-    private Integer exam; //平时成绩
+    private Double usual;
+    private Double design;
+    private Double exam; //平时成绩
 
     //public Student() {}
 
     public Student(
-            Long id,
+            String id,
             String name,
             String major,
             String type,
 
-            Integer usual,
-            Integer design,
-            Integer exam
+            Double usual,
+            Double design,
+            Double exam
     ) {
         this.id = id;
         this.name = name;
@@ -47,11 +47,11 @@ public class Student extends PageHelperEntity {
         this.exam = exam;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -79,27 +79,27 @@ public class Student extends PageHelperEntity {
         return name;
     }
 
-    public Integer getDesign() {
+    public Double getDesign() {
         return design;
     }
 
-    public Integer getExam() {
+    public Double getExam() {
         return exam;
     }
 
-    public Integer getUsual() {
+    public Double getUsual() {
         return usual;
     }
 
-    public void setUsual(Integer usual) {
+    public void setUsual(Double usual) {
         this.usual = usual;
     }
 
-    public void setDesign(Integer design) {
+    public void setDesign(Double design) {
         this.design = design;
     }
 
-    public void setExam(Integer exam) {
+    public void setExam(Double exam) {
         this.exam = exam;
     }
 }

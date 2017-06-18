@@ -1,12 +1,18 @@
 package cn.edu.nju.sa2017.rest;
 
 import cn.edu.nju.sa2017.service.StudentServiceImpl;
+import cn.edu.nju.sa2017.util.TempFile;
 import com.github.pagehelper.PageInfo;
 import cn.edu.nju.sa2017.model.Student;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -15,6 +21,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/students")
 public class StudentController {
+
+    @Autowired
+    JobLauncher jobLauncher;
+
+    @Autowired
+    Job importStudentsFromExcelJob;
 
    @Autowired
    StudentServiceImpl studentService;
@@ -29,7 +41,7 @@ public class StudentController {
 
     @RequestMapping(value = "/find",method = RequestMethod.GET)
     @ResponseBody
-    public PageInfo<Student> findStudentById(Long id) {
+    public PageInfo<Student> findStudentById(String id) {
         System.out.println("Find student by id: " + id);
         List<Student> studentList = studentService.findStudentById(id);
         return new PageInfo<Student>(studentList);
@@ -54,7 +66,7 @@ public class StudentController {
 
     @RequestMapping(value =  "/delete",method = RequestMethod.POST)
     @ResponseBody
-    public PageInfo<Student> deleteStudent (Long id){
+    public PageInfo<Student> deleteStudent (String id){
         System.out.println("Delete student, his id is " + id);
         studentService.deleteStudentById(id);
         List<Student> studentList = studentService.getAllStudents();
@@ -68,6 +80,27 @@ public class StudentController {
         studentService.updateStudent(student);
         List<Student> studentList = studentService.getAllStudents();
         return new PageInfo<Student>(studentList);
+    }
+
+    //private static final String PROPERTY_EXCEL_SOURCE_FILE_PATH = "excel.to.database.job.source.file.path";
+
+    @RequestMapping( value = "/import",method = RequestMethod.POST)
+    @ResponseBody
+    public PageInfo<Student> importStudents(@RequestParam(value="filename") MultipartFile file) throws IOException {
+        System.out.println(file.getOriginalFilename());
+        java.io.File tmpFile = TempFile.createTempFile(file);
+        System.out.println(tmpFile.getAbsoluteFile());
+        try {
+            JobParameters parameters = new JobParametersBuilder().addString("path-to-file",tmpFile.getAbsolutePath()).toJobParameters();
+            jobLauncher.run(importStudentsFromExcelJob, parameters);
+            if(tmpFile.exists()) {
+                tmpFile.delete();
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        PageInfo<Student> list = studentService.getStudentsPage(1,10);
+        return list;
     }
 
 
