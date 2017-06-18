@@ -20,8 +20,4 @@ public final class TempFile {
         }
     }
 
-    public static String getUniqueSignature(String t) {
-        return t + '-' + UUID.randomUUID().toString() + '-' + new Date().getTime();
-    }
-
 }
