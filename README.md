@@ -13,6 +13,7 @@
 	1. git clone https://github.com/njucjc/sa2017.git
 	2. 运行IntelJ IDEA打开工程，运行主类CourseApplication
 	3. 进入webapp子目录用浏览器打开index.html即可
+	4. 注意在使用导入功能时要使用与工程给出的students.xslx格式相同
 ```
 ## 参考资料
 * [Spring Boot + Spring MVC + Spring Security + MySQL](https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d)
