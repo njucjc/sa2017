@@ -6,7 +6,6 @@ import cn.edu.nju.sa2017.model.Student;
 import cn.edu.nju.sa2017.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -14,6 +13,7 @@ import java.util.List;
  */
 @Service
 public class StudentServiceImpl implements StudentService {
+
 
     @Autowired
     private StudentRepository studentRepository;
@@ -30,13 +30,12 @@ public class StudentServiceImpl implements StudentService {
         return pageInfo;
     }
 
-
-    public List<Student> findStudentById(Long id) {
+    public List<Student> findStudentById(String id) {
         return studentRepository.findStudentById(id);
     }
 
-    public void deleteStudentById(Long Id) {
-        studentRepository.deleteStudentById(Id);
+    public void deleteStudentById(String id) {
+        studentRepository.deleteStudentById(id);
     }
 
     public void addStudent(Student student) {

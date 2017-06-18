@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface StudentRepository {
 
-    List<Student> findStudentById(Long Id);
+    List<Student> findStudentById(String id);
 
     List<Student> getAllStudents();
 
@@ -16,5 +16,5 @@ public interface StudentRepository {
 
     Integer updateStudent(Student student);
 
-    Integer deleteStudentById(Long id);
+    Integer deleteStudentById(String id);
 }

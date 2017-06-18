@@ -2,7 +2,9 @@ package cn.edu.nju.sa2017.service;
 
 import com.github.pagehelper.PageInfo;
 import cn.edu.nju.sa2017.model.Student;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -12,11 +14,11 @@ public interface StudentService {
 
     public List<Student> getAllStudents();
 
-    public List<Student> findStudentById(Long id);
+    public List<Student> findStudentById(String id);
 
     public PageInfo<Student> getStudentsPage (Integer pageNum, Integer pageSize);
 
-    public void deleteStudentById(Long id);
+    public void deleteStudentById(String id);
 
     public void addStudent (Student student);
 
