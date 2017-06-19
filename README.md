@@ -19,5 +19,6 @@
 * [Spring Boot + Spring MVC + Spring Security + MySQL](https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d)
 * [SpringMvc+AngularJS通过CORS实现跨域方案](http://www.tuicool.com/articles/umymmqY)
 * [Spring Batch Tutorial: Reading Information From an Excel File](https://www.petrikainulainen.net/programming/spring-framework/spring-batch-tutorial-reading-information-from-an-excel-file/)
-*  [spring-petclinic-rest](https://github.com/spring-petclinic/spring-petclinic-rest)
+* [spring-petclinic-rest](https://github.com/spring-petclinic/spring-petclinic-rest)
+* [JQuery菜鸟教程](http://www.runoob.com/jquery/jquery-examples.html)
 
