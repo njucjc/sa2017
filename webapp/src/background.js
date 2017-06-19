@@ -15,7 +15,7 @@ $(function() {
     pageInfo.pageNum = 1;
     pageInfo.pageSize = 10; 
 
-        function getTotalGrade(usual_grade, design_grade, exam_grade) {
+    function getTotalGrade(usual_grade, design_grade, exam_grade) {
         var total = usual_grade + design_grade + exam_grade;
         return total.toString();
     }

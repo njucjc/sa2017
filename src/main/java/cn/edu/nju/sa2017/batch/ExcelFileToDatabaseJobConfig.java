@@ -47,7 +47,7 @@ public class ExcelFileToDatabaseJobConfig {
 
     @Autowired
     StepBuilderFactory stepBuilderFactory;
-    
+
     @Component
     public static class ExcelFileToDatabaseJobExecutionListener implements JobExecutionListener {
 
