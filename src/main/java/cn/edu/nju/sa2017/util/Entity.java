@@ -1,10 +1,10 @@
-package cn.edu.nju.sa2017.model;
+package cn.edu.nju.sa2017.util;
 
 
 /**
  * Created by njucjc on 2017/6/17.
  */
-public class PageHelperEntity {
+public class Entity {
 
     private Integer page = 1;
     private Integer rows = 10;

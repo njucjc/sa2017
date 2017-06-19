@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.core.io.ClassPathResource;
 
-import java.util.List;
+
 
 /**
  * Created by njucjc on 2017/6/18.
@@ -49,9 +49,9 @@ public class ExcelFileToDatabaseJobConfig {
     StepBuilderFactory stepBuilderFactory;
 
 
-    public static class ImportStudentsFromExcelItemProcessor implements ItemProcessor<String[], Student> {
+/*    public static class ExcelFileToDatabaseItemProcessor implements ItemProcessor<String[], Student> {
 
-        private Logger logger = LoggerFactory.getLogger(ImportStudentsFromExcelItemProcessor.class);
+        private Logger logger = LoggerFactory.getLogger(ExcelFileToDatabaseItemProcessor.class);
 
         @Override
         public Student process(String[] tokens) throws Exception {
@@ -76,24 +76,9 @@ public class ExcelFileToDatabaseJobConfig {
             return student;
         }
     }
-    public static class ImportStudentsFromExcelItemWriter implements ItemWriter<Student> {
-        private static final Logger LOGGER = LoggerFactory.getLogger(ImportStudentsFromExcelItemWriter.class);
-
-        @Autowired
-        private StudentRepository studentRepo;
-
-        @Override
-        public void write(List<? extends Student> list) throws Exception {
-            LOGGER.info("size: "+ list.size());
-            list.forEach(studnet-> {
-                LOGGER.info("add a student, his id is " + studnet.getId());
-                studentRepo.addStudent(studnet);
-            });
-        }
-    }
-
+*/
     @Component
-    public static class importStudentsFromExcelJobExecutionListener implements JobExecutionListener {
+    public static class ExcelFileToDatabaseJobExecutionListener implements JobExecutionListener {
 
         @Override
         public void beforeJob(JobExecution jobExecution) {
@@ -116,34 +101,32 @@ public class ExcelFileToDatabaseJobConfig {
     }
 
     @Bean
-    public ItemProcessor<String[], Student> importStudentsFromExcelProcessor() {
-        return new ImportStudentsFromExcelItemProcessor();
+    public ItemProcessor<String[], Student> excelFileToDatabaseItemProcessor() {
+        return new ExcelFileToDatabaseItemProcessor();
     }
 
     @Bean
     public ItemWriter<Student> excelStudentWriter() {
-        return new ImportStudentsFromExcelItemWriter();
+        return new ExcelFileToDatabaseItemWriter();
     }
 
     @Bean
-    public Step importStudentsFromExcelStep() throws Exception {
-        return stepBuilderFactory.get("importStudentsFromExcelStep")
+    public Step excelFileToDatabaseStep() throws Exception {
+        return stepBuilderFactory.get("excelFileToDatabaseStep")
                 .<String[], Student> chunk(CHUNK_SIZE)
                 .reader(excelStudentReader())
-                .processor(importStudentsFromExcelProcessor())
+                .processor(excelFileToDatabaseItemProcessor())
                 .writer(excelStudentWriter())
                 .build();
     }
 
     @Bean
-    public Job importStudentsFromExcelJob(importStudentsFromExcelJobExecutionListener listener) throws Exception {
-        return jobBuilderFactory.get("importStudentsFromExcelJob")
+    public Job excelFileToDatabaseJob(ExcelFileToDatabaseJobExecutionListener listener) throws Exception {
+        return jobBuilderFactory.get("excelFileToDatabaseJob")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener)
-                .flow(importStudentsFromExcelStep())
+                .flow(excelFileToDatabaseStep())
                 .end()
                 .build();
     }
-
-
 }

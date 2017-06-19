@@ -1,5 +1,6 @@
 package cn.edu.nju.sa2017.model;
 
+import cn.edu.nju.sa2017.util.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @ToString
-public class Student extends PageHelperEntity {
+public class Student extends Entity {
 
     private String  id;
     private String name;
