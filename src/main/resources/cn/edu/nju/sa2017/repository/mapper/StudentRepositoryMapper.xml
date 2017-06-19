@@ -12,6 +12,18 @@
         <result property="exam" column="exam_grade"/>
     </resultMap>
 
+    <delete id="deleteStudentById">
+        DELETE FROM students WHERE stu_id = #{id}
+    </delete>
+
+    <select id="findStudentById" resultMap="students">
+        SELECT * FROM students WHERE stu_id = #{id}
+    </select>
+
+    <select id="getAllStudents" resultMap="students">
+        SELECT * FROM students
+    </select>
+
     <insert id="addStudent" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO
         students (stu_id, stu_name, stu_major, stu_type ,usual_grade,design_grade, exam_grade)
@@ -29,28 +41,4 @@
         stu_id = #{id}
     </update>
 
-
-    <delete id="deleteStudentById">
-        DELETE FROM
-        students
-        WHERE
-        stu_id = #{id}
-    </delete>
-
-    <select id="findStudentById" resultMap="students">
-        SELECT
-        *
-        FROM
-        students
-        WHERE
-        stu_id = #{id}
-    </select>
-
-
-    <select id="getAllStudents" resultMap="students">
-        SELECT
-        *
-        FROM
-        students
-    </select>
 </mapper>

@@ -26,7 +26,7 @@ public class StudentController {
     JobLauncher jobLauncher;
 
     @Autowired
-    Job importStudentsFromExcelJob;
+    Job ExcelFileToDatabaseJob;
 
    @Autowired
    StudentServiceImpl studentService;
@@ -92,7 +92,7 @@ public class StudentController {
         System.out.println(tmpFile.getAbsoluteFile());
         try {
             JobParameters parameters = new JobParametersBuilder().addString("path-to-file",tmpFile.getAbsolutePath()).toJobParameters();
-            jobLauncher.run(importStudentsFromExcelJob, parameters);
+            jobLauncher.run(ExcelFileToDatabaseJob, parameters);
             if(tmpFile.exists()) {
                 tmpFile.delete();
             }
